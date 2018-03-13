@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "This is a simple API"
-  version: "1.0.0"
+  version: "1.1"
   title: "Simple Inventory API"
   contact:
     email: "you@your-company.com"
@@ -18,117 +18,277 @@ tags:
   description: "Operations available to regular developers"
 schemes:
 - "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
 paths:
-  /inventory:
-    get:
-      tags:
-      - "developers"
-      summary: "searches inventory"
-      description: "By passing in the appropriate options, you can search for\navailable\
-        \ inventory in the system\n"
-      operationId: "searchInventory"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "searchString"
-        in: "query"
-        description: "pass an optional search string for looking up inventory"
-        required: false
-        type: "string"
-      - name: "skip"
-        in: "query"
-        description: "number of records to skip for pagination"
-        required: false
-        type: "integer"
-        minimum: 0
-        format: "int32"
-      - name: "limit"
-        in: "query"
-        description: "maximum number of records to return"
-        required: false
-        type: "integer"
-        maximum: 50
-        minimum: 0
-        format: "int32"
-      responses:
-        200:
-          description: "search results matching criteria"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/QuoteUnion"
-        400:
-          description: "bad input parameter"
+  /ExampleServiceOperation:
     post:
-      tags:
-      - "admins"
-      summary: "adds an inventory item"
-      description: "Adds an item to the system"
-      operationId: "addInventory"
+      summary: "Operation ExampleServiceOperation"
+      description: "ExampleServiceOperation Rest API"
+      operationId: "ExampleServiceOperation"
       consumes:
       - "application/json"
       produces:
       - "application/json"
       parameters:
       - in: "body"
-        name: "inventoryItem"
-        description: "Inventory item to add"
-        required: false
+        name: "body"
+        required: true
         schema:
-          $ref: "#/definitions/InventoryItem"
+          $ref: "#/definitions/ExampleServiceOperationInput"
       responses:
-        201:
-          description: "item created"
-        400:
-          description: "invalid input, object invalid"
-        409:
-          description: "an existing item already exists"
+        200:
+          description: "Successful Operation"
+          schema:
+            $ref: "#/definitions/ExampleServiceOperationOutput"
+        default:
+          description: "Unexpected Error"
+          schema:
+            $ref: "#/definitions/Error"
 definitions:
-  InventoryItem:
+  Error:
+    type: "object"
+    properties:
+      trResponseHeader:
+        $ref: "#/definitions/ResponseHeader"
+  ExampleServiceOperationInput:
+    type: "object"
+    properties:
+      trRequestHeader:
+        $ref: "#/definitions/RequestHeader"
+      ExampleServiceOperationRequest:
+        $ref: "#/definitions/ExampleServiceOperationRequest"
+    example:
+      ExampleServiceOperationRequest:
+        searchText: "searchText"
+      trRequestHeader:
+        externalReferenceId: "externalReferenceId"
+        pagingInfo:
+          pageNumber: 0
+          cookie: "cookie"
+          pageSize: 6
+          sort: ""
+        applicationId: "applicationId"
+        requestor:
+          identityType: {}
+          identity: "identity"
+  ExampleServiceOperationOutput:
+    type: "object"
+    properties:
+      trResponseHeader:
+        $ref: "#/definitions/ResponseHeader"
+      ExampleServiceOperationResponse:
+        $ref: "#/definitions/ExampleServiceOperationResponse"
+    example:
+      trResponseHeader:
+        externalReferenceId: "externalReferenceId"
+        pagingInfo:
+          totalRowsAvailable: 5
+          expires: "2000-01-23T04:56:07.000+00:00"
+          cookie: "cookie"
+          isLastPage: true
+          currentPageNumber: 6
+          rowsInCurrentPage: 1
+          totalNumberOfPages: 0
+        internalReferenceId: "internalReferenceId"
+        messages:
+        - severityLevel: "severityLevel"
+          code: "code"
+          description: "description"
+          fields: "fields"
+        - severityLevel: "severityLevel"
+          code: "code"
+          description: "description"
+          fields: "fields"
+        status: "status"
+      ExampleServiceOperationResponse:
+        response: 5
+  ExampleServiceOperationRequest:
     type: "object"
     required:
-    - "id"
-    - "manufacturer"
-    - "name"
-    - "releaseDate"
+    - "searchText"
     properties:
-      id:
+      searchText:
         type: "string"
-        format: "uuid"
-        example: "d290f1ee-6c54-4b01-90e6-d701748f0851"
-      name:
-        type: "string"
-        example: "Widget Adapter"
-      releaseDate:
-        type: "string"
-        format: "int32"
-        example: "2016-08-29T09:12:33.001Z"
-      manufacturer:
-        $ref: "#/definitions/Manufacturer"
     example:
-      releaseDate: "2016-08-29T09:12:33.001Z"
-      name: "Widget Adapter"
-      id: "d290f1ee-6c54-4b01-90e6-d701748f0851"
-      manufacturer:
-        phone: "408-867-5309"
-        name: "ACME Corporation"
-        homePage: "https://www.acme-corp.com"
-  Manufacturer:
+      searchText: "searchText"
+  ExampleServiceOperationResponse:
+    type: "object"
+    properties:
+      response:
+        type: "integer"
+    example:
+      response: 5
+  ResponseHeader:
+    type: "object"
     required:
-    - "name"
+    - "externalReferenceId"
+    - "internalReferenceId"
+    - "messages"
+    - "pagingInfo"
+    - "status"
     properties:
-      name:
+      externalReferenceId:
         type: "string"
-        example: "ACME Corporation"
-      homePage:
+      internalReferenceId:
         type: "string"
-        format: "url"
-        example: "https://www.acme-corp.com"
-      phone:
+      pagingInfo:
+        $ref: "#/definitions/PagingInfoResponse"
+      status:
         type: "string"
-        example: "408-867-5309"
+      messages:
+        type: "array"
+        items:
+          $ref: "#/definitions/Message"
     example:
-      phone: "408-867-5309"
-      name: "ACME Corporation"
-      homePage: "https://www.acme-corp.com"
-  QuoteUnion: {}
+      externalReferenceId: "externalReferenceId"
+      pagingInfo:
+        totalRowsAvailable: 5
+        expires: "2000-01-23T04:56:07.000+00:00"
+        cookie: "cookie"
+        isLastPage: true
+        currentPageNumber: 6
+        rowsInCurrentPage: 1
+        totalNumberOfPages: 0
+      internalReferenceId: "internalReferenceId"
+      messages:
+      - severityLevel: "severityLevel"
+        code: "code"
+        description: "description"
+        fields: "fields"
+      - severityLevel: "severityLevel"
+        code: "code"
+        description: "description"
+        fields: "fields"
+      status: "status"
+  PagingInfoResponse:
+    type: "object"
+    required:
+    - "currentPageNumber"
+    - "isLastPage"
+    - "rowsInCurrentPage"
+    - "totalNumberOfPages"
+    - "totalRowsAvailable"
+    properties:
+      cookie:
+        type: "string"
+      expires:
+        type: "string"
+        format: "date-time"
+      isLastPage:
+        type: "boolean"
+      totalNumberOfPages:
+        type: "integer"
+        format: "int32"
+      currentPageNumber:
+        type: "integer"
+        format: "int32"
+      rowsInCurrentPage:
+        type: "integer"
+        format: "int32"
+      totalRowsAvailable:
+        type: "integer"
+        format: "int32"
+    example:
+      totalRowsAvailable: 5
+      expires: "2000-01-23T04:56:07.000+00:00"
+      cookie: "cookie"
+      isLastPage: true
+      currentPageNumber: 6
+      rowsInCurrentPage: 1
+      totalNumberOfPages: 0
+  Message:
+    type: "object"
+    required:
+    - "code"
+    - "description"
+    - "severityLevel"
+    properties:
+      code:
+        type: "string"
+      description:
+        type: "string"
+      severityLevel:
+        type: "string"
+      fields:
+        type: "string"
+    example:
+      severityLevel: "severityLevel"
+      code: "code"
+      description: "description"
+      fields: "fields"
+  RequestHeader:
+    type: "object"
+    required:
+    - "externalReferenceId"
+    properties:
+      externalReferenceId:
+        type: "string"
+      applicationId:
+        type: "string"
+      requestor:
+        $ref: "#/definitions/UserIdentity"
+      pagingInfo:
+        $ref: "#/definitions/PagingInfoRequest"
+    example:
+      externalReferenceId: "externalReferenceId"
+      pagingInfo:
+        pageNumber: 0
+        cookie: "cookie"
+        pageSize: 6
+        sort: ""
+      applicationId: "applicationId"
+      requestor:
+        identityType: {}
+        identity: "identity"
+  UserIdentity:
+    type: "object"
+    properties:
+      identity:
+        type: "string"
+      identityType:
+        $ref: "#/definitions/IdentityType"
+    example:
+      identityType: {}
+      identity: "identity"
+  IdentityType:
+    type: "string"
+    enum:
+    - "Token"
+    - "Identifier"
+  PagingInfoRequest:
+    type: "object"
+    properties:
+      cookie:
+        type: "string"
+      pageNumber:
+        type: "integer"
+        format: "int32"
+      pageSize:
+        type: "integer"
+        format: "int32"
+      sort:
+        $ref: "#/definitions/ArrayOfSortInformation"
+    example:
+      pageNumber: 0
+      cookie: "cookie"
+      pageSize: 6
+      sort: ""
+  ArrayOfSortInformation:
+    type: "array"
+    items:
+      $ref: "#/definitions/SortInformation"
+  SortInformation:
+    type: "object"
+    properties:
+      order:
+        $ref: "#/definitions/SortOrder"
+      sortBy:
+        type: "string"
+  SortOrder:
+    type: "string"
+    enum:
+    - "Ascending"
+    - "Descending"
