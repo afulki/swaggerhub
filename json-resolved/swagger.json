@@ -133,7 +133,8 @@
           "status" : "status"
         },
         "ExampleServiceOperationResponse" : {
-          "response" : 5
+          "response" : 5,
+          "khal" : "2000-01-23T04:56:07.000+00:00"
         }
       }
     },
@@ -154,10 +155,15 @@
       "properties" : {
         "response" : {
           "type" : "integer"
+        },
+        "khal" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       },
       "example" : {
-        "response" : 5
+        "response" : 5,
+        "khal" : "2000-01-23T04:56:07.000+00:00"
       }
     },
     "ResponseHeader" : {
