@@ -19,6 +19,13 @@ namespace IO.Swagger.Model {
     [JsonProperty(PropertyName = "response")]
     public int? Response { get; set; }
 
+    /// <summary>
+    /// Gets or Sets Khal
+    /// </summary>
+    [DataMember(Name="khal", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "khal")]
+    public DateTime? Khal { get; set; }
+
 
     /// <summary>
     /// Get the string presentation of the object
@@ -28,6 +35,7 @@ namespace IO.Swagger.Model {
       var sb = new StringBuilder();
       sb.Append("class ExampleServiceOperationResponse {\n");
       sb.Append("  Response: ").Append(Response).Append("\n");
+      sb.Append("  Khal: ").Append(Khal).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }
