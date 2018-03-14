@@ -1,0 +1,375 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.1",
+    "title" : "Simple Inventory API",
+    "contact" : {
+      "email" : "you@your-company.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/Afulki9/GetQuotes/1.0.0",
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/ExampleServiceOperation" : {
+      "post" : {
+        "summary" : "Operation ExampleServiceOperation",
+        "description" : "ExampleServiceOperation Rest API",
+        "operationId" : "ExampleServiceOperation",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ExampleServiceOperationInput"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "schema" : {
+              "$ref" : "#/definitions/ExampleServiceOperationOutput"
+            }
+          },
+          "default" : {
+            "description" : "Unexpected Error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Error" : {
+      "type" : "object",
+      "properties" : {
+        "trResponseHeader" : {
+          "$ref" : "#/definitions/ResponseHeader"
+        }
+      }
+    },
+    "ExampleServiceOperationInput" : {
+      "type" : "object",
+      "properties" : {
+        "trRequestHeader" : {
+          "$ref" : "#/definitions/RequestHeader"
+        },
+        "ExampleServiceOperationRequest" : {
+          "$ref" : "#/definitions/ExampleServiceOperationRequest"
+        }
+      },
+      "example" : {
+        "ExampleServiceOperationRequest" : {
+          "searchText" : "searchText"
+        },
+        "trRequestHeader" : {
+          "externalReferenceId" : "externalReferenceId",
+          "pagingInfo" : {
+            "pageNumber" : 0,
+            "cookie" : "cookie",
+            "pageSize" : 6,
+            "sort" : ""
+          },
+          "applicationId" : "applicationId",
+          "requestor" : {
+            "identityType" : { },
+            "identity" : "identity"
+          }
+        }
+      }
+    },
+    "ExampleServiceOperationOutput" : {
+      "type" : "object",
+      "properties" : {
+        "trResponseHeader" : {
+          "$ref" : "#/definitions/ResponseHeader"
+        },
+        "ExampleServiceOperationResponse" : {
+          "$ref" : "#/definitions/ExampleServiceOperationResponse"
+        }
+      },
+      "example" : {
+        "trResponseHeader" : {
+          "externalReferenceId" : "externalReferenceId",
+          "pagingInfo" : {
+            "totalRowsAvailable" : 5,
+            "expires" : "2000-01-23T04:56:07.000+00:00",
+            "cookie" : "cookie",
+            "isLastPage" : true,
+            "currentPageNumber" : 6,
+            "rowsInCurrentPage" : 1,
+            "totalNumberOfPages" : 0
+          },
+          "internalReferenceId" : "internalReferenceId",
+          "messages" : [ {
+            "severityLevel" : "severityLevel",
+            "code" : "code",
+            "description" : "description",
+            "fields" : "fields"
+          }, {
+            "severityLevel" : "severityLevel",
+            "code" : "code",
+            "description" : "description",
+            "fields" : "fields"
+          } ],
+          "status" : "status"
+        },
+        "ExampleServiceOperationResponse" : {
+          "response" : 5
+        }
+      }
+    },
+    "ExampleServiceOperationRequest" : {
+      "type" : "object",
+      "required" : [ "searchText" ],
+      "properties" : {
+        "searchText" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "searchText" : "searchText"
+      }
+    },
+    "ExampleServiceOperationResponse" : {
+      "type" : "object",
+      "properties" : {
+        "response" : {
+          "type" : "integer"
+        }
+      },
+      "example" : {
+        "response" : 5
+      }
+    },
+    "ResponseHeader" : {
+      "type" : "object",
+      "required" : [ "externalReferenceId", "internalReferenceId", "messages", "pagingInfo", "status" ],
+      "properties" : {
+        "externalReferenceId" : {
+          "type" : "string"
+        },
+        "internalReferenceId" : {
+          "type" : "string"
+        },
+        "pagingInfo" : {
+          "$ref" : "#/definitions/PagingInfoResponse"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "messages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Message"
+          }
+        }
+      },
+      "example" : {
+        "externalReferenceId" : "externalReferenceId",
+        "pagingInfo" : {
+          "totalRowsAvailable" : 5,
+          "expires" : "2000-01-23T04:56:07.000+00:00",
+          "cookie" : "cookie",
+          "isLastPage" : true,
+          "currentPageNumber" : 6,
+          "rowsInCurrentPage" : 1,
+          "totalNumberOfPages" : 0
+        },
+        "internalReferenceId" : "internalReferenceId",
+        "messages" : [ {
+          "severityLevel" : "severityLevel",
+          "code" : "code",
+          "description" : "description",
+          "fields" : "fields"
+        }, {
+          "severityLevel" : "severityLevel",
+          "code" : "code",
+          "description" : "description",
+          "fields" : "fields"
+        } ],
+        "status" : "status"
+      }
+    },
+    "PagingInfoResponse" : {
+      "type" : "object",
+      "required" : [ "currentPageNumber", "isLastPage", "rowsInCurrentPage", "totalNumberOfPages", "totalRowsAvailable" ],
+      "properties" : {
+        "cookie" : {
+          "type" : "string"
+        },
+        "expires" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "isLastPage" : {
+          "type" : "boolean"
+        },
+        "totalNumberOfPages" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentPageNumber" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "rowsInCurrentPage" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalRowsAvailable" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "example" : {
+        "totalRowsAvailable" : 5,
+        "expires" : "2000-01-23T04:56:07.000+00:00",
+        "cookie" : "cookie",
+        "isLastPage" : true,
+        "currentPageNumber" : 6,
+        "rowsInCurrentPage" : 1,
+        "totalNumberOfPages" : 0
+      }
+    },
+    "Message" : {
+      "type" : "object",
+      "required" : [ "code", "description", "severityLevel" ],
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "severityLevel" : {
+          "type" : "string"
+        },
+        "fields" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "severityLevel" : "severityLevel",
+        "code" : "code",
+        "description" : "description",
+        "fields" : "fields"
+      }
+    },
+    "RequestHeader" : {
+      "type" : "object",
+      "required" : [ "externalReferenceId" ],
+      "properties" : {
+        "externalReferenceId" : {
+          "type" : "string"
+        },
+        "applicationId" : {
+          "type" : "string"
+        },
+        "requestor" : {
+          "$ref" : "#/definitions/UserIdentity"
+        },
+        "pagingInfo" : {
+          "$ref" : "#/definitions/PagingInfoRequest"
+        }
+      },
+      "example" : {
+        "externalReferenceId" : "externalReferenceId",
+        "pagingInfo" : {
+          "pageNumber" : 0,
+          "cookie" : "cookie",
+          "pageSize" : 6,
+          "sort" : ""
+        },
+        "applicationId" : "applicationId",
+        "requestor" : {
+          "identityType" : { },
+          "identity" : "identity"
+        }
+      }
+    },
+    "UserIdentity" : {
+      "type" : "object",
+      "properties" : {
+        "identity" : {
+          "type" : "string"
+        },
+        "identityType" : {
+          "$ref" : "#/definitions/IdentityType"
+        }
+      },
+      "example" : {
+        "identityType" : { },
+        "identity" : "identity"
+      }
+    },
+    "IdentityType" : {
+      "type" : "string",
+      "enum" : [ "Token", "Identifier" ]
+    },
+    "PagingInfoRequest" : {
+      "type" : "object",
+      "properties" : {
+        "cookie" : {
+          "type" : "string"
+        },
+        "pageNumber" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "pageSize" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sort" : {
+          "$ref" : "#/definitions/ArrayOfSortInformation"
+        }
+      },
+      "example" : {
+        "pageNumber" : 0,
+        "cookie" : "cookie",
+        "pageSize" : 6,
+        "sort" : ""
+      }
+    },
+    "ArrayOfSortInformation" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/SortInformation"
+      }
+    },
+    "SortInformation" : {
+      "type" : "object",
+      "properties" : {
+        "order" : {
+          "$ref" : "#/definitions/SortOrder"
+        },
+        "sortBy" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SortOrder" : {
+      "type" : "string",
+      "enum" : [ "Ascending", "Descending" ]
+    }
+  }
+}
