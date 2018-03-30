@@ -335,8 +335,8 @@
     },
     "IdentityType" : {
       "type" : "string",
-      "enum" : [ "Token", "Identifier", "SubId" ],
-      "default" : "SubId"
+      "enum" : [ "Token", "Identifier", "SubId", "JasonK" ],
+      "default" : "JasonK"
     },
     "PagingInfoRequest" : {
       "type" : "object",
