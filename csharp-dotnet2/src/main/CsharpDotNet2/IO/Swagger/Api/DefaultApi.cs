@@ -15,13 +15,8 @@ namespace IO.Swagger.Api
         /// Operation ExampleServiceOperation ExampleServiceOperation Rest API
         /// </summary>
         /// <param name="body"></param>
-        /// <param name="contextid"></param>
-        /// <param name="consumerId"></param>
-        /// <param name="internalreferenceid"></param>
-        /// <param name="firmId"></param>
-        /// <param name="transactionid"></param>
         /// <returns>ExampleServiceOperationOutput</returns>
-        ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body, string contextid, string consumerId, string internalreferenceid, string firmId, string transactionid);
+        ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body);
     }
   
     /// <summary>
@@ -81,32 +76,12 @@ namespace IO.Swagger.Api
         /// Operation ExampleServiceOperation ExampleServiceOperation Rest API
         /// </summary>
         /// <param name="body"></param> 
-        /// <param name="contextid"></param> 
-        /// <param name="consumerId"></param> 
-        /// <param name="internalreferenceid"></param> 
-        /// <param name="firmId"></param> 
-        /// <param name="transactionid"></param> 
         /// <returns>ExampleServiceOperationOutput</returns>            
-        public ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body, string contextid, string consumerId, string internalreferenceid, string firmId, string transactionid)
+        public ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body)
         {
             
             // verify the required parameter 'body' is set
             if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling ExampleServiceOperation");
-            
-            // verify the required parameter 'contextid' is set
-            if (contextid == null) throw new ApiException(400, "Missing required parameter 'contextid' when calling ExampleServiceOperation");
-            
-            // verify the required parameter 'consumerId' is set
-            if (consumerId == null) throw new ApiException(400, "Missing required parameter 'consumerId' when calling ExampleServiceOperation");
-            
-            // verify the required parameter 'internalreferenceid' is set
-            if (internalreferenceid == null) throw new ApiException(400, "Missing required parameter 'internalreferenceid' when calling ExampleServiceOperation");
-            
-            // verify the required parameter 'firmId' is set
-            if (firmId == null) throw new ApiException(400, "Missing required parameter 'firmId' when calling ExampleServiceOperation");
-            
-            // verify the required parameter 'transactionid' is set
-            if (transactionid == null) throw new ApiException(400, "Missing required parameter 'transactionid' when calling ExampleServiceOperation");
             
     
             var path = "/ExampleServiceOperation";
@@ -118,12 +93,7 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                         if (contextid != null) headerParams.Add("Contextid", ApiClient.ParameterToString(contextid)); // header parameter
- if (consumerId != null) headerParams.Add("ConsumerId", ApiClient.ParameterToString(consumerId)); // header parameter
- if (internalreferenceid != null) headerParams.Add("Internalreferenceid", ApiClient.ParameterToString(internalreferenceid)); // header parameter
- if (firmId != null) headerParams.Add("FirmId", ApiClient.ParameterToString(firmId)); // header parameter
- if (transactionid != null) headerParams.Add("transactionid", ApiClient.ParameterToString(transactionid)); // header parameter
-                        postBody = ApiClient.Serialize(body); // http body (model) parameter
+                                                postBody = ApiClient.Serialize(body); // http body (model) parameter
     
             // authentication setting, if any
             String[] authSettings = new String[] {  };
