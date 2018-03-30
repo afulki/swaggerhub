@@ -52,7 +52,7 @@ definitions:
     type: object
     properties:
       trResponseHeader:
-        $ref: '#/definitions/ResponseHeader'
+        $ref: '#/definitions/Respo'
   ExampleServiceOperationInput:
     type: object
     properties:
@@ -126,6 +126,84 @@ definitions:
     example:
       gary: 2000-01-23T04:56:07.000+00:00
       response: 5
+  RequestHeader:
+    type: object
+    required:
+    - externalReferenceId
+    properties:
+      externalReferenceId:
+        type: string
+        example: 67d8e8a6-658e-4272-91c8-356401744228
+        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
+      applicationId:
+        type: string
+      requestor:
+        $ref: '#/definitions/UserIdentity'
+      pagingInfo:
+        $ref: '#/definitions/PagingInfoRequest'
+    example:
+      externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
+      pagingInfo:
+        pageNumber: 0
+        cookie: cookie
+        pageSize: 6
+        sort:
+      applicationId: applicationId
+      requestor:
+        identityType: {}
+        identity: identity
+  UserIdentity:
+    type: object
+    properties:
+      identity:
+        type: string
+      identityType:
+        $ref: '#/definitions/IdentityType'
+    example:
+      identityType: {}
+      identity: identity
+  IdentityType:
+    type: string
+    enum:
+    - Token
+    - Identifier
+    - SubId
+    - JasonK
+    default: JasonK
+  PagingInfoRequest:
+    type: object
+    properties:
+      cookie:
+        type: string
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      sort:
+        $ref: '#/definitions/ArrayOfSortInformation'
+    example:
+      pageNumber: 0
+      cookie: cookie
+      pageSize: 6
+      sort:
+  ArrayOfSortInformation:
+    type: array
+    items:
+      $ref: '#/definitions/SortInformation'
+  SortInformation:
+    type: object
+    properties:
+      order:
+        $ref: '#/definitions/SortOrder'
+      sortBy:
+        type: string
+  SortOrder:
+    type: string
+    enum:
+    - Ascending
+    - Descending
   ResponseHeader:
     type: object
     required:
@@ -228,80 +306,3 @@ definitions:
       code: code
       description: description
       fields: fields
-  RequestHeader:
-    type: object
-    required:
-    - externalReferenceId
-    properties:
-      externalReferenceId:
-        type: string
-        example: 67d8e8a6-658e-4272-91c8-356401744228
-        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
-      applicationId:
-        type: string
-      requestor:
-        $ref: '#/definitions/UserIdentity'
-      pagingInfo:
-        $ref: '#/definitions/PagingInfoRequest'
-    example:
-      externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
-      pagingInfo:
-        pageNumber: 0
-        cookie: cookie
-        pageSize: 6
-        sort:
-      applicationId: applicationId
-      requestor:
-        identityType: {}
-        identity: identity
-  UserIdentity:
-    type: object
-    properties:
-      identity:
-        type: string
-      identityType:
-        $ref: '#/definitions/IdentityType'
-    example:
-      identityType: {}
-      identity: identity
-  IdentityType:
-    type: string
-    enum:
-    - Token
-    - Identifier
-    - SubId
-    default: SubId
-  PagingInfoRequest:
-    type: object
-    properties:
-      cookie:
-        type: string
-      pageNumber:
-        type: integer
-        format: int32
-      pageSize:
-        type: integer
-        format: int32
-      sort:
-        $ref: '#/definitions/ArrayOfSortInformation'
-    example:
-      pageNumber: 0
-      cookie: cookie
-      pageSize: 6
-      sort:
-  ArrayOfSortInformation:
-    type: array
-    items:
-      $ref: '#/definitions/SortInformation'
-  SortInformation:
-    type: object
-    properties:
-      order:
-        $ref: '#/definitions/SortOrder'
-      sortBy:
-        type: string
-  SortOrder:
-    type: string
-    enum:
-    - Ascending
-    - Descending
