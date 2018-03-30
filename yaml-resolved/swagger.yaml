@@ -38,27 +38,6 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/ExampleServiceOperationInput'
-      - name: Contextid
-        in: header
-        required: true
-        type: String
-      - name: ConsumerId
-        in: header
-        required: true
-        type: String
-      - name: Internalreferenceid
-        in: header
-        required: true
-        type: String
-        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
-      - name: FirmId
-        in: header
-        required: true
-        type: String
-      - name: transactionid
-        in: header
-        required: true
-        type: String
       responses:
         200:
           description: Successful Operation
