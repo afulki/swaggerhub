@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="exampleserviceoperation"></a>
 # **ExampleServiceOperation**
-> ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body)
+> ExampleServiceOperationOutput ExampleServiceOperation (ExampleServiceOperationInput body, string contextid, string consumerId, string internalreferenceid, string firmId, string transactionid)
 
 Operation ExampleServiceOperation
 
@@ -32,11 +32,16 @@ namespace Example
             
             var apiInstance = new DefaultApi();
             var body = new ExampleServiceOperationInput(); // ExampleServiceOperationInput | 
+            var contextid = contextid_example;  // string | 
+            var consumerId = consumerId_example;  // string | 
+            var internalreferenceid = internalreferenceid_example;  // string | 
+            var firmId = firmId_example;  // string | 
+            var transactionid = transactionid_example;  // string | 
 
             try
             {
                 // Operation ExampleServiceOperation
-                ExampleServiceOperationOutput result = apiInstance.ExampleServiceOperation(body);
+                ExampleServiceOperationOutput result = apiInstance.ExampleServiceOperation(body, contextid, consumerId, internalreferenceid, firmId, transactionid);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -53,6 +58,11 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ExampleServiceOperationInput**](ExampleServiceOperationInput.md)|  | 
+ **contextid** | **string**|  | 
+ **consumerId** | **string**|  | 
+ **internalreferenceid** | **string**|  | 
+ **firmId** | **string**|  | 
+ **transactionid** | **string**|  | 
 
 ### Return type
 
