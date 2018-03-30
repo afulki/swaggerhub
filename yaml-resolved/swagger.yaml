@@ -1,299 +1,328 @@
 ---
-swagger: "2.0"
+swagger: 2.0
 info:
-  description: "This is a simple API"
-  version: "1.1"
-  title: "Simple Inventory API"
+  description: This is a simple API
+  version: 1.1
+  title: Simple Inventory API
   contact:
-    email: "you@your-company.com"
+    email: you@your-company.com
   license:
-    name: "Apache 2.0"
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "virtserver.swaggerhub.com"
-basePath: "/Afulki9/GetQuotes/1.0.0"
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /Afulki9/GetQuotes/1.0.0
 tags:
-- name: "admins"
-  description: "Secured Admin-only calls"
-- name: "developers"
-  description: "Operations available to regular developers"
+- name: admins
+  description: Secured Admin-only calls
+- name: developers
+  description: Operations available to regular developers
 schemes:
-- "https"
+- https
 consumes:
-- "application/json"
+- application/json
 produces:
-- "application/json"
+- application/json
 paths:
   /ExampleServiceOperation:
     post:
-      summary: "Operation ExampleServiceOperation"
-      description: "ExampleServiceOperation Rest API"
-      operationId: "ExampleServiceOperation"
+      summary: Operation ExampleServiceOperation
+      description: ExampleServiceOperation Rest API
+      operationId: ExampleServiceOperation
       consumes:
-      - "application/json"
+      - application/json
       produces:
-      - "application/json"
+      - application/json
       parameters:
-      - in: "body"
-        name: "body"
+      - in: body
+        name: body
         required: true
         schema:
-          $ref: "#/definitions/ExampleServiceOperationInput"
+          $ref: '#/definitions/ExampleServiceOperationInput'
+      - name: Contextid
+        in: header
+        required: true
+        type: String
+      - name: ConsumerId
+        in: header
+        required: true
+        type: String
+      - name: Internalreferenceid
+        in: header
+        required: true
+        type: String
+        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
+      - name: FirmId
+        in: header
+        required: true
+        type: String
+      - name: transactionid
+        in: header
+        required: true
+        type: String
       responses:
         200:
-          description: "Successful Operation"
+          description: Successful Operation
           schema:
-            $ref: "#/definitions/ExampleServiceOperationOutput"
+            $ref: '#/definitions/ExampleServiceOperationOutput'
         default:
-          description: "Unexpected Error"
+          description: Unexpected Error
           schema:
-            $ref: "#/definitions/Error"
+            $ref: '#/definitions/Error'
 definitions:
   Error:
-    type: "object"
+    type: object
     properties:
       trResponseHeader:
-        $ref: "#/definitions/ResponseHeader"
+        $ref: '#/definitions/ResponseHeader'
   ExampleServiceOperationInput:
-    type: "object"
+    type: object
     properties:
       trRequestHeader:
-        $ref: "#/definitions/RequestHeader"
+        $ref: '#/definitions/RequestHeader'
       ExampleServiceOperationRequest:
-        $ref: "#/definitions/ExampleServiceOperationRequest"
+        $ref: '#/definitions/ExampleServiceOperationRequest'
     example:
       ExampleServiceOperationRequest:
-        searchText: "searchText"
+        searchText: searchText
       trRequestHeader:
-        externalReferenceId: "externalReferenceId"
+        externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
         pagingInfo:
           pageNumber: 0
-          cookie: "cookie"
+          cookie: cookie
           pageSize: 6
-          sort: ""
-        applicationId: "applicationId"
+          sort:
+        applicationId: applicationId
         requestor:
           identityType: {}
-          identity: "identity"
+          identity: identity
   ExampleServiceOperationOutput:
-    type: "object"
+    type: object
     properties:
       trResponseHeader:
-        $ref: "#/definitions/ResponseHeader"
+        $ref: '#/definitions/ResponseHeader'
       ExampleServiceOperationResponse:
-        $ref: "#/definitions/ExampleServiceOperationResponse"
+        $ref: '#/definitions/ExampleServiceOperationResponse'
     example:
       trResponseHeader:
-        externalReferenceId: "externalReferenceId"
+        externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
         pagingInfo:
           totalRowsAvailable: 5
-          expires: "2000-01-23T04:56:07.000+00:00"
-          cookie: "cookie"
+          expires: 2000-01-23T04:56:07.000+00:00
+          cookie: cookie
           isLastPage: true
           currentPageNumber: 6
           rowsInCurrentPage: 1
           totalNumberOfPages: 0
-        internalReferenceId: "internalReferenceId"
+        internalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
         messages:
-        - severityLevel: "severityLevel"
-          code: "code"
-          description: "description"
-          fields: "fields"
-        - severityLevel: "severityLevel"
-          code: "code"
-          description: "description"
-          fields: "fields"
-        status: "status"
+        - severityLevel: severityLevel
+          code: code
+          description: description
+          fields: fields
+        - severityLevel: severityLevel
+          code: code
+          description: description
+          fields: fields
+        status: status
       ExampleServiceOperationResponse:
-        gary: "2000-01-23T04:56:07.000+00:00"
+        gary: 2000-01-23T04:56:07.000+00:00
         response: 5
   ExampleServiceOperationRequest:
-    type: "object"
+    type: object
     required:
-    - "searchText"
+    - searchText
     properties:
       searchText:
-        type: "string"
+        type: string
     example:
-      searchText: "searchText"
+      searchText: searchText
   ExampleServiceOperationResponse:
-    type: "object"
+    type: object
     properties:
       response:
-        type: "integer"
+        type: integer
       gary:
-        type: "string"
-        format: "date-time"
+        type: string
+        format: date-time
     example:
-      gary: "2000-01-23T04:56:07.000+00:00"
+      gary: 2000-01-23T04:56:07.000+00:00
       response: 5
   ResponseHeader:
-    type: "object"
+    type: object
     required:
-    - "externalReferenceId"
-    - "internalReferenceId"
-    - "messages"
-    - "pagingInfo"
-    - "status"
+    - externalReferenceId
+    - internalReferenceId
+    - messages
+    - pagingInfo
+    - status
     properties:
       externalReferenceId:
-        type: "string"
+        type: string
+        example: 67d8e8a6-658e-4272-91c8-356401744228
+        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
       internalReferenceId:
-        type: "string"
+        type: string
+        example: 67d8e8a6-658e-4272-91c8-356401744228
+        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
       pagingInfo:
-        $ref: "#/definitions/PagingInfoResponse"
+        $ref: '#/definitions/PagingInfoResponse'
       status:
-        type: "string"
+        type: string
       messages:
-        type: "array"
+        type: array
         items:
-          $ref: "#/definitions/Message"
+          $ref: '#/definitions/Message'
     example:
-      externalReferenceId: "externalReferenceId"
+      externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
       pagingInfo:
         totalRowsAvailable: 5
-        expires: "2000-01-23T04:56:07.000+00:00"
-        cookie: "cookie"
+        expires: 2000-01-23T04:56:07.000+00:00
+        cookie: cookie
         isLastPage: true
         currentPageNumber: 6
         rowsInCurrentPage: 1
         totalNumberOfPages: 0
-      internalReferenceId: "internalReferenceId"
+      internalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
       messages:
-      - severityLevel: "severityLevel"
-        code: "code"
-        description: "description"
-        fields: "fields"
-      - severityLevel: "severityLevel"
-        code: "code"
-        description: "description"
-        fields: "fields"
-      status: "status"
+      - severityLevel: severityLevel
+        code: code
+        description: description
+        fields: fields
+      - severityLevel: severityLevel
+        code: code
+        description: description
+        fields: fields
+      status: status
   PagingInfoResponse:
-    type: "object"
+    type: object
     required:
-    - "currentPageNumber"
-    - "isLastPage"
-    - "rowsInCurrentPage"
-    - "totalNumberOfPages"
-    - "totalRowsAvailable"
+    - currentPageNumber
+    - isLastPage
+    - rowsInCurrentPage
+    - totalNumberOfPages
+    - totalRowsAvailable
     properties:
       cookie:
-        type: "string"
+        type: string
       expires:
-        type: "string"
-        format: "date-time"
+        type: string
+        format: date-time
       isLastPage:
-        type: "boolean"
+        type: boolean
       totalNumberOfPages:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       currentPageNumber:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       rowsInCurrentPage:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       totalRowsAvailable:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
     example:
       totalRowsAvailable: 5
-      expires: "2000-01-23T04:56:07.000+00:00"
-      cookie: "cookie"
+      expires: 2000-01-23T04:56:07.000+00:00
+      cookie: cookie
       isLastPage: true
       currentPageNumber: 6
       rowsInCurrentPage: 1
       totalNumberOfPages: 0
   Message:
-    type: "object"
+    type: object
     required:
-    - "code"
-    - "description"
-    - "severityLevel"
+    - code
+    - description
+    - severityLevel
     properties:
       code:
-        type: "string"
+        type: string
       description:
-        type: "string"
+        type: string
       severityLevel:
-        type: "string"
+        type: string
       fields:
-        type: "string"
+        type: string
     example:
-      severityLevel: "severityLevel"
-      code: "code"
-      description: "description"
-      fields: "fields"
+      severityLevel: severityLevel
+      code: code
+      description: description
+      fields: fields
   RequestHeader:
-    type: "object"
+    type: object
     required:
-    - "externalReferenceId"
+    - externalReferenceId
     properties:
       externalReferenceId:
-        type: "string"
+        type: string
+        example: 67d8e8a6-658e-4272-91c8-356401744228
+        pattern: ^([0-9A-Fa-f]{8}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{4}[-][0-9A-Fa-f]{12})$
       applicationId:
-        type: "string"
+        type: string
       requestor:
-        $ref: "#/definitions/UserIdentity"
+        $ref: '#/definitions/UserIdentity'
       pagingInfo:
-        $ref: "#/definitions/PagingInfoRequest"
+        $ref: '#/definitions/PagingInfoRequest'
     example:
-      externalReferenceId: "externalReferenceId"
+      externalReferenceId: 67d8e8a6-658e-4272-91c8-356401744228
       pagingInfo:
         pageNumber: 0
-        cookie: "cookie"
+        cookie: cookie
         pageSize: 6
-        sort: ""
-      applicationId: "applicationId"
+        sort:
+      applicationId: applicationId
       requestor:
         identityType: {}
-        identity: "identity"
+        identity: identity
   UserIdentity:
-    type: "object"
+    type: object
     properties:
       identity:
-        type: "string"
+        type: string
       identityType:
-        $ref: "#/definitions/IdentityType"
+        $ref: '#/definitions/IdentityType'
     example:
       identityType: {}
-      identity: "identity"
+      identity: identity
   IdentityType:
-    type: "string"
+    type: string
     enum:
-    - "Token"
-    - "Identifier"
+    - Token
+    - Identifier
+    - SubId
+    default: SubId
   PagingInfoRequest:
-    type: "object"
+    type: object
     properties:
       cookie:
-        type: "string"
+        type: string
       pageNumber:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       pageSize:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
       sort:
-        $ref: "#/definitions/ArrayOfSortInformation"
+        $ref: '#/definitions/ArrayOfSortInformation'
     example:
       pageNumber: 0
-      cookie: "cookie"
+      cookie: cookie
       pageSize: 6
-      sort: ""
+      sort:
   ArrayOfSortInformation:
-    type: "array"
+    type: array
     items:
-      $ref: "#/definitions/SortInformation"
+      $ref: '#/definitions/SortInformation'
   SortInformation:
-    type: "object"
+    type: object
     properties:
       order:
-        $ref: "#/definitions/SortOrder"
+        $ref: '#/definitions/SortOrder'
       sortBy:
-        type: "string"
+        type: string
   SortOrder:
-    type: "string"
+    type: string
     enum:
-    - "Ascending"
-    - "Descending"
+    - Ascending
+    - Descending
