@@ -17,7 +17,7 @@ namespace IO.Swagger.Model {
     /// </summary>
     [DataMember(Name="trResponseHeader", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "trResponseHeader")]
-    public Respo TrResponseHeader { get; set; }
+    public ResponseHeader TrResponseHeader { get; set; }
 
 
     /// <summary>
